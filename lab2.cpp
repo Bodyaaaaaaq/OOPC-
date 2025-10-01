@@ -16,13 +16,13 @@ class Engine {
         serialNumber=new char[10];
         strcpy(serialNumber,"N/A");
     }
-    Engine(double v, int p, const char* s){ // Конструктор з параметрами
+    Engine(double v, int p, const char* s){ 
         volume=v;
         power=p;
         serialNumber=new char[strlen(s)+1];
         strcpy(serialNumber,s);
     }
-    ~Engine(){ // Деструктор
+    ~Engine(){ 
         delete[] serialNumber;
     }
     double getVolume(){
@@ -46,7 +46,7 @@ class Engine {
         strcpy(serialNumber,s);
     }
     void show() {
-        cout << "Двигун: " << volume << " л, " << power << " к.с., серійний номер: " << serialNumber << endl;
+        cout << "Engine: " << volume << " liter, " << power << " h.p., serial number: " << serialNumber << endl;
     }
 
 };
@@ -76,7 +76,7 @@ class Car{
         strcpy(registrationNumber,r);
         engine=e;
     }
-    ~Car(){ // Деструктор
+    ~Car(){ 
         delete[] brand;
         delete[] color;
         delete[] registrationNumber;
@@ -118,26 +118,21 @@ class Car{
         setColor(newColor);
     }
     void show(){
-        cout << "Автомобіль: " << brand << ", колір: " << color << ", реєстраційний номер: " << registrationNumber << endl;
+        cout << "Car: " << brand << ", color: " << color << ", Registration Number: " << registrationNumber << endl;
         engine.show();
     }
 
 };
 
 int main(){
-    setlocale(LC_ALL, "Ukr");
     Engine eng1(2.4, 250, "5J6TF3H57FS123456");
-    Car car1("Honda", "Чорний", "AE0085EP", eng1);
-    cout << "Інформація про авто:" << endl;
+    Car car1("Honda", "Black", "AE0085EP", eng1);
+    cout << "Information about car:" << endl;
     car1.show();
-    cout << "Після перереєстрації та перефарбування:" << endl;
+    cout << "After reassign number and repaint:" << endl;
     car1.reassignNumber("AA9999BB");
-    car1.repaint("Червоний");
+    car1.repaint("Red");
     car1.show();
 
-    cout << "Зміна параметрів двигуна" << endl;
-    car1.getEngine().setPower(300);
-    car1.getEngine().setVolume(3.0);
-    car1.show();
     return 0;
 }
